@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="95">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>src/AllSat.h</itemPath>
+      <itemPath>src/CNF.h</itemPath>
+      <itemPath>src/CNF_CLAUSE.h</itemPath>
+      <itemPath>src/Parser.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="lib" displayName="Library" projectFiles="true">
+      <logicalFolder name="minisat" displayName="minisat" projectFiles="true">
+        <logicalFolder name="core" displayName="core" projectFiles="true">
+          <itemPath>lib/minisat/core/Dimacs.h</itemPath>
+          <itemPath>lib/minisat/core/Solver.cc</itemPath>
+          <itemPath>lib/minisat/core/Solver.h</itemPath>
+          <itemPath>lib/minisat/core/SolverTypes.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="mtl" displayName="mtl" projectFiles="true">
+          <itemPath>lib/minisat/mtl/Alg.h</itemPath>
+          <itemPath>lib/minisat/mtl/Alloc.h</itemPath>
+          <itemPath>lib/minisat/mtl/Heap.h</itemPath>
+          <itemPath>lib/minisat/mtl/IntMap.h</itemPath>
+          <itemPath>lib/minisat/mtl/IntTypes.h</itemPath>
+          <itemPath>lib/minisat/mtl/Map.h</itemPath>
+          <itemPath>lib/minisat/mtl/Queue.h</itemPath>
+          <itemPath>lib/minisat/mtl/Rnd.h</itemPath>
+          <itemPath>lib/minisat/mtl/Sort.h</itemPath>
+          <itemPath>lib/minisat/mtl/Vec.h</itemPath>
+          <itemPath>lib/minisat/mtl/XAlloc.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="simp" displayName="simp" projectFiles="true">
+          <itemPath>lib/minisat/simp/SimpSolver.cc</itemPath>
+          <itemPath>lib/minisat/simp/SimpSolver.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="utils" displayName="utils" projectFiles="true">
+          <itemPath>lib/minisat/utils/Options.cc</itemPath>
+          <itemPath>lib/minisat/utils/Options.h</itemPath>
+          <itemPath>lib/minisat/utils/ParseUtils.h</itemPath>
+          <itemPath>lib/minisat/utils/System.cc</itemPath>
+          <itemPath>lib/minisat/utils/System.h</itemPath>
+        </logicalFolder>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>src/AllSat.cpp</itemPath>
+      <itemPath>src/CNF.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>lib</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <commandLine>-lz</commandLine>
+        </linkerTool>
+      </compileType>
+      <item path="lib/minisat/core/Dimacs.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/core/Solver.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/minisat/core/Solver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/core/SolverTypes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Alg.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Alloc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Heap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/IntMap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/IntTypes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Map.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Queue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Rnd.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Sort.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Vec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/XAlloc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/simp/SimpSolver.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/minisat/simp/SimpSolver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/Options.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/Options.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/ParseUtils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/System.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/System.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/AllSat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/AllSat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/CNF.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/CNF.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/CNF_CLAUSE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="lib/minisat/core/Dimacs.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/core/Solver.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/minisat/core/Solver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/core/SolverTypes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Alg.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Alloc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Heap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/IntMap.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/IntTypes.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Map.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Queue.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Rnd.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Sort.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/Vec.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/mtl/XAlloc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/simp/SimpSolver.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/minisat/simp/SimpSolver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/Options.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/Options.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/ParseUtils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/System.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="lib/minisat/utils/System.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/AllSat.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/AllSat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/CNF.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/CNF.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/CNF_CLAUSE.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
