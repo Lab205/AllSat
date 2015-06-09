@@ -35,30 +35,36 @@ void CNF::negation(CNF& C, CNF& C_prime) {
 
 }
 
-void CNF::DNF2CNF(std::vector<CNF_CLAUSE> Disjunction, CNF& Consjunction, int terms) {
+void CNF::DNF2CNF(std::vector<CNF_CLAUSE>& Disjunction, CNF& Conjunction, int& terms) {
     int left = 0;
     int right = 0;
     int i = 0;
     CNF_CLAUSE temp;
-    left = con(Disjunction[i++], terms, Consjunction);
-    right = con(Disjunction[i++], terms, Consjunction);
-    while (i < Disjunction.size()) {
+    left = con(Disjunction[i++], terms, Conjunction);
+    if (Disjunction.size() > 1) {
+        right = con(Disjunction[i++], terms, Conjunction);
+        while (i < Disjunction.size()) {
+            temp.push_back(-(++terms));
+            temp.push_back(left);
+            temp.push_back(right);
+            Conjunction.data.push_back(temp);
+            temp.clear();
+            left = terms;
+            right = con(Disjunction[i++], terms, Conjunction);
+        }
         temp.push_back(-(++terms));
         temp.push_back(left);
         temp.push_back(right);
-        Consjunction.data.push_back(temp);
+        Conjunction.data.push_back(temp);
         temp.clear();
-        left = terms;
-        right = con(Disjunction[i++], terms, Consjunction);
+        temp.push_back(terms);
+        Conjunction.data.push_back(temp);
+        temp.clear();
+    } else {
+        temp.push_back(left);
+        Conjunction.data.push_back(temp);
+        temp.clear();
     }
-    temp.push_back(-(++terms));
-    temp.push_back(left);
-    temp.push_back(right);
-    Consjunction.data.push_back(temp);
-    temp.clear();
-    temp.push_back(terms);
-    Consjunction.data.push_back(temp);
-    temp.clear();
 }
 
 int CNF::con(std::vector<int> Vec, int& terms, CNF& C_prime) {
@@ -78,11 +84,11 @@ int CNF::con(std::vector<int> Vec, int& terms, CNF& C_prime) {
         C_prime.data.push_back(temp);
         temp.clear();
         while (j < Vec.size()) {
-            terms++;
-            temp.push_back(-(terms));
-            temp.push_back(terms - 1);
-            C_prime.data.push_back(temp);
-            temp.clear();
+//            terms++;
+//            temp.push_back(-(terms));
+//            temp.push_back(terms - 1);
+//            C_prime.data.push_back(temp);
+//            temp.clear();
             temp.push_back(-(terms));
             temp.push_back(Vec[j++]);
             C_prime.data.push_back(temp);
@@ -109,12 +115,12 @@ void CNF::intersection(CNF& one, CNF& two, CNF_CLAUSE& res) {
     CNF2SET(one, set_one);
     CNF2SET(two, set_two);
     CNF_CLAUSE temp;
-//    printf("set_one:%d\n", set_two.size());
+    //    printf("set_one:%d\n", set_two.size());
     //    std::set_intersection(set_one.begin(), set_one.end(), set_two.begin(), set_two.end(), inserter(set_res, set_res.begin()));
     for (std::set<int>::iterator i = set_one.begin(); i != set_one.end(); i++) {
-        if (set_two.find(*i) != set_two.end()){
-//            set_res.insert(*i);
-//            printf("insert:%d\n", *i);
+        if (set_two.find(*i) != set_two.end()) {
+            //            set_res.insert(*i);
+            //            printf("insert:%d\n", *i);
             res.push_back(*i);
         }
     }
@@ -122,7 +128,9 @@ void CNF::intersection(CNF& one, CNF& two, CNF_CLAUSE& res) {
 
 void CNF::CNF2SET(CNF& target, std::set<int>& target_set) {
     for (int i = 0; i < target.data.size(); i++) {
-        target_set.insert(target.data[i][0]);
-//        printf("insert:%d\n", target.data[i][0]);
+        if (target.data[i].size() == 1) {
+            target_set.insert(target.data[i][0]);
+        }
+        //        printf("insert:%d\n", target.data[i][0]);
     }
 }

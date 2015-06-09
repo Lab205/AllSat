@@ -66,31 +66,53 @@ void AllSat::read_from_file(const char* path) {
 }
 
 void AllSat::solve() {
+    std::fstream out;
+    out.open("res.txt");
     C.negation(C, C_prime);
-
+    int count = 1;
     CNF P, P1, CUAP;
-    C.Union(C, A_prime, CUAP);
-    while (get_assign(CUAP, P)) {
-        U.Union(P, C_prime, U);
-        if (!get_assign(U, P1)) {
-            print_file(U);
-            system("./muser2 -w input.cnf");
-            this->read_from_file("muser2-output.cnf");
-            CNF_CLAUSE alpha, alpha_prime;
-            P.intersection(P, PUC, alpha);
-            P.data.clear();
-            PUC.data.clear();
-           
-            A.data.push_back(alpha);
-            for (int i = 0; i < alpha.size(); i++) {
-                alpha_prime.push_back(-alpha[i]);
-            }
-            alpha.clear();
-            A_prime.data.push_back(alpha_prime);
-            alpha_prime.clear();
-        }
-        C.Union(C, A_prime, CUAP);
+    //    for(int i = 0; i < C_prime.data.size(); i++){
+    //        for(int j = 0; j < C_prime.data[i].size(); j++){
+    //            printf("%d ", C_prime.data[i][j]);
+    //        }
+    //        printf("0\n");
+    //    }
+    if (!get_assign(C_prime, P1)) {
+        printf("All Sat!\n");
     }
+    C.Union(C, A_prime, CUAP);
+    if (!get_assign(CUAP, P)) {
+        printf("UNSAT!\n");
+    }
+        while (get_assign(CUAP, P)) {
+    get_assign(CUAP, P);
+    U.Union(P, C_prime, U);
+    print_file(U);
+    system("./muser2 -w input.cnf > tmp");
+
+    this->read_from_file("muser2-output.cnf");
+    CNF_CLAUSE alpha, alpha_prime;
+    P.intersection(P, PUC, alpha);
+    P.data.clear();
+    PUC.data.clear();
+    for (int j = 0; j < alpha.size(); j++) {
+        printf("%d ", alpha[j]);
+    }
+    printf("\n-----%d------size: %d------\n", count++, alpha.size());
+    //        for(int j = 0; j < alpha.size(); j++){
+    //            out<<alpha[j]<<" ";
+    //        }
+    //        out<<"----------------------------"<<std::endl;
+    A.data.push_back(alpha);
+    for (int i = 0; i < alpha.size(); i++) {
+        alpha_prime.push_back(-alpha[i]);
+    }
+    alpha.clear();
+    A_prime.data.push_back(alpha_prime);
+    alpha_prime.clear();
+
+    C.Union(C, A_prime, CUAP);
+        }
     print_result();
 }
 
@@ -110,7 +132,7 @@ bool AllSat::get_assign(CNF& C, CNF& P) {
         S.addClause_(lits);
     }
     Minisat::BoolOption solve("MAIN", "solve", "Completely turn on/off solving after preprocessing.", true);
-    S.eliminate(true); 
+    S.eliminate(true);
     if (!S.okay()) {
         return false;
         //        exit(20);
@@ -157,13 +179,13 @@ void AllSat::print_file(CNF& U) {
     }
 }
 
-void AllSat::print_result(){
+void AllSat::print_result() {
     std::ofstream res;
     res.open("result");
     for (int i = 0; i < A.data.size(); i++) {
-        for(int j = 0; j < A.data[i].size(); j++){
-            res<<A.data[i][j]<<" ";
+        for (int j = 0; j < A.data[i].size(); j++) {
+            res << A.data[i][j] << " ";
         }
-        res<<"\n";
+        res << "\n";
     }
 }

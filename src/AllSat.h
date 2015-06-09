@@ -17,7 +17,6 @@ class AllSat {
 private:
     CNF C_prime;
     CNF A_prime;
-    CNF C;
     CNF C_prime_DNF;
     CNF U;
     CNF PUC;
@@ -26,6 +25,7 @@ private:
     int clauses;
 public:
     
+    CNF C;
     CNF A;
     AllSat();
     AllSat(const AllSat& orig);

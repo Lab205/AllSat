@@ -66,7 +66,7 @@ LDLIBSOPTIONS=
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/allsat: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/allsat ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/allsat ${OBJECTFILES} ${LDLIBSOPTIONS} -lz
 
 ${OBJECTDIR}/lib/minisat/core/Solver.o: lib/minisat/core/Solver.cc 
 	${MKDIR} -p ${OBJECTDIR}/lib/minisat/core

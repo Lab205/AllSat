@@ -160,6 +160,9 @@
         <asmTool>
           <developmentMode>5</developmentMode>
         </asmTool>
+        <linkerTool>
+          <commandLine>-lz</commandLine>
+        </linkerTool>
       </compileType>
       <item path="lib/minisat/core/Dimacs.h" ex="false" tool="3" flavor2="0">
       </item>

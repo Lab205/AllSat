@@ -27,7 +27,7 @@ public:
     
 private:
     void CNF2SET(CNF& target, std::set<int>& alpha);
-    void DNF2CNF(std::vector<CNF_CLAUSE> Disjunction, CNF& Consjunction, int terms);
+    void DNF2CNF(std::vector<CNF_CLAUSE>& Disjunction, CNF& Conjunction, int& terms);
     int con(CNF_CLAUSE Vec, int& terms, CNF& C_prime);
 };
 
