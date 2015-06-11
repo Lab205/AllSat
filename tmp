@@ -8,14 +8,14 @@ c *** config: -minisat -ph 3 -T 3600 -v 0 ***
 c 
 c *** instance: input.cnf ***
 c 
-c Parsing completed at CPU Time: 0.003224
-c Input size: 3202 groups, 3202 clauses.
+c Parsing completed at CPU Time: 0.001423
+c Input size: 10 groups, 10 clauses.
 c Running MUSer2 ...
 c No trimming and no initial (UN)SAT check ...
-c CPU time of extraction only: 0.12159 sec
-c Calls to SAT solver during extraction: 497
-c Groups detected by model rotation: 1526 out of 2022
-c Groups removed with refinement: 1179 out of 1180
-c MUS size: 2022 out of 3202 clauses (63.148%)
+c CPU time of extraction only: 6.7e-05 sec
+c Calls to SAT solver during extraction: 2
+c Groups detected by model rotation: 4 out of 5
+c Groups removed with refinement: 4 out of 5
+c MUS size: 5 out of 10 clauses (50%)
 c Terminating MUSer2 ...
-c CPU Time: 0.126882
+c CPU Time: 0.001601

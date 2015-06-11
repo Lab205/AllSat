@@ -36,7 +36,8 @@ public:
 private:
     void read_from_file(const char* path);
     void print_file(CNF& U);
-    bool get_assign(CNF& C, CNF& P);
+    bool sat_check(CNF& C, CNF& P);
+    bool get_assign(CNF_CLAUSE& alpha_neg, CNF& P, Minisat::SimpSolver& Sat);
     void print_result();
 };
 

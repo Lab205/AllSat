@@ -17,7 +17,7 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     //    Minisat::SimpSolver S;
-    AllSat s("medium.cnf");
+    AllSat s("test.cnf");
     s.solve();
     return 0;
 }
