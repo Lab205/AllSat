@@ -8,7 +8,9 @@
 #include <cstdlib>
 #include "lib/minisat/simp/SimpSolver.h"
 #include "src/CNF.h"
+#include "src/MUC.h"
 #include "src/AllSat.h"
+#include "lib/minisat/core/Solver.h"
 #include <fstream>
 using namespace std;
 
@@ -17,7 +19,7 @@ using namespace std;
  */
 int main(int argc, char** argv) {
     //    Minisat::SimpSolver S;
-    AllSat s("test.cnf");
+    AllSat s("medium.cnf");
     s.solve();
     return 0;
 }

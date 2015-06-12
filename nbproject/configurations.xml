@@ -7,7 +7,12 @@
       <itemPath>src/AllSat.h</itemPath>
       <itemPath>src/CNF.h</itemPath>
       <itemPath>src/CNF_CLAUSE.h</itemPath>
+      <itemPath>src/MUC.h</itemPath>
+      <itemPath>src/MUCCommon.h</itemPath>
+      <itemPath>src/MUCParser.h</itemPath>
+      <itemPath>src/MUC_parser.h</itemPath>
       <itemPath>src/Parser.h</itemPath>
+      <itemPath>src/Utility.h</itemPath>
     </logicalFolder>
     <logicalFolder name="lib" displayName="Library" projectFiles="true">
       <logicalFolder name="minisat" displayName="minisat" projectFiles="true">
@@ -52,6 +57,7 @@
                    projectFiles="true">
       <itemPath>src/AllSat.cpp</itemPath>
       <itemPath>src/CNF.cpp</itemPath>
+      <itemPath>src/MUC.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -138,7 +144,19 @@
       </item>
       <item path="src/CNF_CLAUSE.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/MUC.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MUC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MUCCommon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MUCParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MUC_parser.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/Parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Utility.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -220,7 +238,19 @@
       </item>
       <item path="src/CNF_CLAUSE.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/MUC.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MUC.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MUCCommon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MUCParser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MUC_parser.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/Parser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Utility.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

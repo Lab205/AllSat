@@ -10,6 +10,7 @@
 #include "CNF_CLAUSE.h"
 #include "Common.h"
 #include "CNF.h"
+#include "MUC.h"
 #include <set>
 #include <vector>
 
@@ -23,6 +24,10 @@ private:
     bool flag;
     int terms;
     int clauses;
+    
+    Minisat::Solver Sat;
+    
+    Minisat::Solver S;
 public:
     
     CNF C;
@@ -37,7 +42,7 @@ private:
     void read_from_file(const char* path);
     void print_file(CNF& U);
     bool sat_check(CNF& C, CNF& P);
-    bool get_assign(CNF_CLAUSE& alpha_neg, CNF& P, Minisat::SimpSolver& Sat);
+    bool get_assign(CNF_CLAUSE& alpha_neg, CNF& P);
     void print_result();
 };
 

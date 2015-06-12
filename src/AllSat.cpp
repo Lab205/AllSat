@@ -7,6 +7,7 @@
 
 #include "AllSat.h"
 #include "Parser.h"
+#include "MUC.h"
 #include <fstream>
 
 AllSat::AllSat() {
@@ -66,7 +67,6 @@ void AllSat::read_from_file(const char* path) {
 }
 
 void AllSat::solve() {
-    Minisat::SimpSolver Sat;
     std::ofstream out;
     out.open("res.txt");
     C.negation(C, C_prime);
@@ -89,24 +89,39 @@ void AllSat::solve() {
             }
             Sat.addClause_(lits);
         }
-        //        C.Union(C, A_prime, CUAP);
-        while (get_assign(alpha_prime, P, Sat)) {
 
+        while (get_assign(alpha_prime, P)) {
+//            for (int i = 0; i < P.data.size(); i++) {
+//                for (int j = 0; j < P.data[i].size(); j++) {
+//                    printf("%d ", P.data[i][j]);
+//                }
+//                printf("0\n");
+//            }
             alpha.clear();
 
             alpha_prime.clear();
-            U.Union(C_prime, P, U);
-            print_file(U);
-            system("./muser2 -w input.cnf > tmp");
+            ///////////////////////////////////////////////////get MUC
+            //            U.Union(C_prime, P, U);
+            //            print_file(U);
+            //            system("./muser2 -w input.cnf > tmp");
+            //
+            //            this->read_from_file("muser2-output.cnf");
+            ///////////////////////////////////////////////////
+            MUC muc(P, C_prime);
+            muc.muc_solve();
+            muc.get_data(PUC);
 
-            this->read_from_file("muser2-output.cnf");
+
+
+
+            ///////////////////////////////////////////////////
             P.intersection(P, PUC, alpha);
             P.data.clear();
             PUC.data.clear();
             for (int j = 0; j < alpha.size(); j++) {
                 printf("%d ", alpha[j]);
             }
-            printf("\n-----%d------size: %d------\n", count++, alpha.size());
+            printf("\n-----%d-----------\n", count++);
             for (int j = 0; j < alpha.size(); j++) {
                 out << alpha[j] << " ";
             }
@@ -126,7 +141,6 @@ void AllSat::solve() {
 
 bool AllSat::sat_check(CNF& Add, CNF& P) {
 
-    Minisat::SimpSolver S;
     int var;
     CNF_CLAUSE temp;
     Minisat::Lit lit;
@@ -140,9 +154,8 @@ bool AllSat::sat_check(CNF& Add, CNF& P) {
         }
         S.addClause_(lits);
     }
-
     Minisat::BoolOption solve("MAIN", "solve", "Completely turn on/off solving after preprocessing.", true);
-    S.eliminate(true);
+    //    S.eliminate(true);
     if (!S.okay()) {
         return false;
     }
@@ -167,15 +180,12 @@ bool AllSat::sat_check(CNF& Add, CNF& P) {
     }
 }
 
-bool AllSat::get_assign(CNF_CLAUSE& alpha_neg, CNF& P, Minisat::SimpSolver& Sat) {
+bool AllSat::get_assign(CNF_CLAUSE& alpha_neg, CNF& P) {
     int var;
     CNF_CLAUSE temp;
     Minisat::Lit lit;
     Minisat::vec<Minisat::Lit> lits;
     lits.clear();
-    for (int j = 0; j < alpha_neg.size(); j++) {
-        printf("%d ", alpha_neg[j]);
-    }
     if (!alpha_neg.empty()) {
         for (int j = 0; j < alpha_neg.size(); j++) {
             var = abs(alpha_neg[j]) - 1;
@@ -184,12 +194,8 @@ bool AllSat::get_assign(CNF_CLAUSE& alpha_neg, CNF& P, Minisat::SimpSolver& Sat)
         }
         Sat.addClause_(lits);
     }
-
-    printf("Sat_size: %d \n", Sat.nVars());
     Minisat::BoolOption solve("MAIN", "solve", "Completely turn on/off solving after preprocessing.", true);
-    Sat.eliminate(true);
     if (!Sat.okay()) {
-        printf("false\n");
         return false;
     }
     Minisat::lbool ret = Minisat::l_Undef;
@@ -198,13 +204,15 @@ bool AllSat::get_assign(CNF_CLAUSE& alpha_neg, CNF& P, Minisat::SimpSolver& Sat)
         ret = Sat.solveLimited(dummy);
     }
     if (ret == Minisat::l_True) {
+
         for (int i = 0; i < Sat.nVars(); i++)
             if (Sat.model[i] != Minisat::l_Undef) {
                 temp.push_back((Sat.model[i] == Minisat::l_True) ? (i + 1) : -(i + 1));
+//                printf("%d ", temp.back());
                 P.data.push_back(temp);
                 temp.clear();
             }
-
+//        printf("\n---get_assign---\n");
         return true;
     } else if (ret == Minisat::l_False) {
         return false;

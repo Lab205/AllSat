@@ -1,13 +1,13 @@
-build/Debug/GNU-Linux-x86/src/AllSat.o: src/AllSat.cpp src/AllSat.h \
- src/CNF_CLAUSE.h src/Common.h src/../lib/minisat/simp/SimpSolver.h \
+build/Debug/GNU-Linux-x86/src/MUC.o: src/MUC.cpp src/MUC.h src/CNF.h \
+ src/Common.h src/../lib/minisat/simp/SimpSolver.h \
  src/../lib/minisat/utils/ParseUtils.h \
  src/../lib/minisat/core/SolverTypes.h src/../lib/minisat/utils/System.h \
- src/../lib/minisat/core/Dimacs.h src/CNF.h src/Parser.h src/MUC.h \
- src/MUCCommon.h
+ src/../lib/minisat/core/Dimacs.h src/CNF_CLAUSE.h src/Parser.h \
+ src/MUCCommon.h src/MUCParser.h src/Utility.h
 
-src/AllSat.h:
+src/MUC.h:
 
-src/CNF_CLAUSE.h:
+src/CNF.h:
 
 src/Common.h:
 
@@ -21,10 +21,12 @@ src/../lib/minisat/utils/System.h:
 
 src/../lib/minisat/core/Dimacs.h:
 
-src/CNF.h:
+src/CNF_CLAUSE.h:
 
 src/Parser.h:
 
-src/MUC.h:
-
 src/MUCCommon.h:
+
+src/MUCParser.h:
+
+src/Utility.h:

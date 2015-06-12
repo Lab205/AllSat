@@ -41,7 +41,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/lib/minisat/utils/System.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/src/AllSat.o \
-	${OBJECTDIR}/src/CNF.o
+	${OBJECTDIR}/src/CNF.o \
+	${OBJECTDIR}/src/MUC.o
 
 
 # C Compiler Flags
@@ -102,6 +103,11 @@ ${OBJECTDIR}/src/CNF.o: src/CNF.cpp
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/CNF.o src/CNF.cpp
+
+${OBJECTDIR}/src/MUC.o: src/MUC.cpp 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/MUC.o src/MUC.cpp
 
 # Subprojects
 .build-subprojects:
