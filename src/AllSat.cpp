@@ -53,11 +53,11 @@ void AllSat::read_from_file(const char* path) {
             if (flag == true) {
                 C.data.push_back(term);
             } else {
-                if (term.size() == 1) {
+//                if (term.size() == 1) {
                     PUC.data.push_back(term);
-                } else {
-
-                }
+//                } else {
+//
+//                }
             }
         }
     }
@@ -68,7 +68,9 @@ void AllSat::read_from_file(const char* path) {
 
 void AllSat::solve() {
     std::ofstream out;
+    std::ofstream core;
     out.open("res.txt");
+    core.open("muc.txt");
     C.negation(C, C_prime);
     int count = 1;
     CNF P, P1, CUAP;
@@ -91,30 +93,28 @@ void AllSat::solve() {
         }
 
         while (get_assign(alpha_prime, P)) {
-//            for (int i = 0; i < P.data.size(); i++) {
-//                for (int j = 0; j < P.data[i].size(); j++) {
-//                    printf("%d ", P.data[i][j]);
-//                }
-//                printf("0\n");
-//            }
             alpha.clear();
-
+            PUC.data.clear();
             alpha_prime.clear();
-            ///////////////////////////////////////////////////get MUC
-            //            U.Union(C_prime, P, U);
-            //            print_file(U);
-            //            system("./muser2 -w input.cnf > tmp");
-            //
-            //            this->read_from_file("muser2-output.cnf");
+            /////////////////////////////////////////////////get MUC--muser2
+            U.Union(C_prime, P, U);
+            print_file(U);
+            system("./muser2 -w input.cnf > tmp");
+            this->read_from_file("muser2-output.cnf");
+            /////////////////////////////////////////////////get MUC--muc
+            //            MUC muc(P, C_prime);
+            //            muc.muc_solve();
+            //            muc.get_data(PUC);
             ///////////////////////////////////////////////////
-            MUC muc(P, C_prime);
-            muc.muc_solve();
-            muc.get_data(PUC);
-
-
-
-
-            ///////////////////////////////////////////////////
+            
+            core << "----------------------------"<< "muc:" <<count <<"-----------------------------------------" << std::endl;
+            for (int i = 0; i < PUC.data.size(); i++) {
+                for (int j = 0; j < PUC.data[i].size(); j++) {
+                    core << PUC.data[i][j] << " ";
+                }
+                
+            core << std::endl;
+            }
             P.intersection(P, PUC, alpha);
             P.data.clear();
             PUC.data.clear();
@@ -136,6 +136,7 @@ void AllSat::solve() {
         }
         print_result();
         out.close();
+        core.close();
     }
 }
 
@@ -208,11 +209,11 @@ bool AllSat::get_assign(CNF_CLAUSE& alpha_neg, CNF& P) {
         for (int i = 0; i < Sat.nVars(); i++)
             if (Sat.model[i] != Minisat::l_Undef) {
                 temp.push_back((Sat.model[i] == Minisat::l_True) ? (i + 1) : -(i + 1));
-//                printf("%d ", temp.back());
+                //                printf("%d ", temp.back());
                 P.data.push_back(temp);
                 temp.clear();
             }
-//        printf("\n---get_assign---\n");
+        //        printf("\n---get_assign---\n");
         return true;
     } else if (ret == Minisat::l_False) {
         return false;
